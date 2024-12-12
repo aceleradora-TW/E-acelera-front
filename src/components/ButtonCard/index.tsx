@@ -1,16 +1,16 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, CardActions, ThemeProvider } from '@mui/material';
-import StatusSelect from '../StatusSelect';
-import { useRouter } from 'next/navigation';
-import { theme } from '../../app/config/theme';
+import * as React from "react"
+import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
+import Typography from "@mui/material/Typography"
+import { CardActionArea, Box} from "@mui/material"
+import { useRouter } from "next/navigation"
+import { theme } from "../../app/config/theme"
+import StatusSelect from "../StatusSelect"
 
 interface ButtonCardProps {
-    title: string;
-    description: string;
-    route: string;
+    title: string
+    description: string
+    route: string
 }
 
 const cardStyles = {
@@ -29,22 +29,21 @@ export const ButtonCard: React.FC<ButtonCardProps> = ({ title, description, rout
         router.push(`/${route}`)
     }
     return (
-        <ThemeProvider theme={theme}>
-            <Card sx={theme.customStyles.cardButtonContainer}>
-                <CardActionArea onClick={() => handleClick(route)}>
-                    <CardContent sx={theme.customStyles.cardButtonContent}>
-                        <Typography gutterBottom variant="h2" component="div" sx={theme.customStyles.cardTitle}>
-                            {title}
-                        </Typography>
-                        <Typography variant="body1" sx={cardStyles}>
-                            {description}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions sx={{cardActionsStyle}}>
-                    <StatusSelect />
-                </CardActions>
-            </Card>
-        </ThemeProvider>
+        <Card sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between',  ...theme.customStyles.cardButtonContainer }}>
+        <CardActionArea onClick={() => handleClick(route)} sx={{ flexGrow: 1 }}> 
+            <CardContent sx={theme.customStyles.cardButtonContent}>
+                <Typography gutterBottom variant="h3" component="div" sx={theme.customStyles.cardTitle}>
+                    {title}
+                </Typography>
+                <Typography variant="body1" sx={cardStyles}>
+                    {description}
+                </Typography>
+            </CardContent>
+        </CardActionArea>
+    
+        <Box sx={{ padding: 2 }}>
+            <StatusSelect width='70%'/>
+        </Box>
+    </Card>
     );
 }

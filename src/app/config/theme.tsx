@@ -18,11 +18,12 @@ export enum themePalette {
   title = "rgb(0, 44, 83)",
   descriptionCard = "rgb(44, 44, 44)",
   descriptionText = "rgb(0, 0, 0)",
-  statusInProgress = "rgb(255, 222, 107)",
-  statusConcluded = "rgb(155, 255, 133)",
-  statusPending = "rgb(225, 225, 225)",
+  statusInProgress = "rgb(172, 238, 245)",
+  statusConcluded = "rgb(158, 255, 133)",
+  statusPending = "rgb(222, 229, 216)",
   mainBg = "rgb(245, 245, 245)",
   whiteBg = "rgb(255, 255, 255)",
+  hoverBg = "rgb(154 , 192, 201)",
 }
 
 declare module "@mui/material/styles" {
@@ -63,7 +64,7 @@ declare module "@mui/material/styles" {
         display: string;
         flexDirection: string;
         justifyContent: string;
-        padding: number;
+        padding: string;
         boxShadow: string;
         borderRadius: string;
       };
@@ -72,7 +73,6 @@ declare module "@mui/material/styles" {
         color: string;
         borderBottomWidth: string;
         borderBottomColor: string;
-        my: number;
         display: string;
         textTransform: string;
         fontSize: string;
@@ -80,11 +80,14 @@ declare module "@mui/material/styles" {
         fontWeight: number;
         letterSpacing: number;
         margin: string;
+        padding: string;
+        "&:hover": {
+          backgroundColor: string;
+      }
         borderRadius: string;
       };
       link: {
         color: string;
-        my: number;
         display: string;
         textTransform: string;
         fontSize: string;
@@ -92,9 +95,25 @@ declare module "@mui/material/styles" {
         fontWeight: number;
         letterSpacing: number;
         margin: string;
-        borderRadius: string;
+        padding: string;
+        "&:hover": {
+          backgroundColor: string;
+      }
+      borderRadius: string;
       };
+      linkReference:{
+        color: string;
+      },
       logoType: {
+        fontSize: string;
+        mr: number;
+        fontWeight: number;
+        letterSpacing: string;
+        lineHeight: number;
+        textDecoration: string;
+        color: string;
+      };
+      logoTypeLogin: {
         fontSize: string;
         mr: number;
         fontWeight: number;
@@ -113,16 +132,19 @@ declare module "@mui/material/styles" {
         textOverflow: string;
       };
       cardContainer: {
+        display: string,
+        flexDirection: string,
+        justifyContent: string,
         backgroundColor: string;
-        maxWidth: number;
-        borderWidth: number;
-        maxHeight: number;
+        maxWidth: string;
+        height: string;
+        borderWidth: number; 
       };
       cardButtonContainer: {
         backgroundColor: string;
         maxWidth: number;
         borderWidth: number;
-        maxHeight: number;
+        height: string;
         "&:hover": {
           transform: string;
       }
@@ -132,8 +154,10 @@ declare module "@mui/material/styles" {
         height: number;
       };
       cardButtonContent:{
-        paddingBottom: number;
-        paddingTop: number;
+        display: string; 
+        flexDirection: string; 
+        alignItems: string;
+        height: string;
       };
       cardMedia: {
         height: number;
@@ -142,11 +166,58 @@ declare module "@mui/material/styles" {
       cardTitle: {
         wordWrap: string;
         color: string;
+        display: string;
+        WebkitLineClamp: number;
+        WebkitBoxOrient: string;
+        overflow: string;
+        textOverflow: string;
+      };
+      cardLoginBox: {
+        width: {
+          xs: string,
+          sm: string,
+          md: string,
+          lg: string,
+          xl: string
+        },
+        height: string,
+        boxShadow: string,
+        padding: string,
+      };
+      containerLogin:{
+        height: string,
+        display: string,
+        justifyContent: string,
+        marginTop: string,
+      };
+      boxLogoType:{
+        display: string, 
+        gap: string, 
+        alignItems: string,
+      };
+      h1Login:{
+        fontSize:{
+          xs: string,
+          sm: string,
+          md: string,
+          lg: string,
+          xl: string,
+        }
+      };
+      body1Login:{
+        fontSize: {
+          xs: string,
+          sm: string,
+          md: string,
+          lg: string,
+          xl: string,
+        },
+        marginBottom: string,
       };
       title: {
-        textAlign: string,
-        color: string,
-        margin: string
+        textAlign: string;
+        color: string;
+        margin: string;
       };
       breadCrumb: {
         textDecoration: string;
@@ -154,10 +225,57 @@ declare module "@mui/material/styles" {
         marginTop: number;
       };
       centralizeContent: {
-        display: string,
-        justifyContent: string,
-        alignItems: string
+        display: string;
+        justifyContent: string;
+        alignItems: string;
+        maxWidth: string;
+        margin: string;
       }
+      cardVideo: {
+        display: string;
+        flexDirection: string;
+        justifyContent: string;
+        padding: number;
+        boxShadow: string;
+        maxWidth: string;
+        height: string;
+        boxSizing: string;
+        borderRadius: string,
+      };
+      cardVideoLink:{
+        display: string, 
+        flexDirection: string, 
+        justifyContent: string 
+      };
+      cardVideoNumber:{
+        display: string, 
+        flexDirection: string, 
+        justifyContent: string, 
+        marginTop: number
+        };
+      cardVideoSelect:{
+          display: string, 
+          flexDirection: string, 
+          justifyContent: string, 
+          marginTop: number
+      };
+      cardVideoDescription: {
+        display: string, 
+        flexDirection: string, 
+        justifyContent: string, 
+        marginTop: number, 
+        marginRight: number
+      };
+      advanceExercises: {
+        color: string,
+        padding: string,
+      };
+      cardMediaImage: {
+        maxWidth: string,
+        height: string,
+        display: string,
+        objectFit: string,
+      };
     };
   }
 
@@ -180,17 +298,16 @@ declare module "@mui/material/styles" {
         display?: string;
         flexDirection?: string;
         justifyContent?: string;
-        padding?: number;
+        padding?: string;
         boxShadow?: string;
         borderRadius?: string;
         margin?: number;
       };
-      linkActive: {
+      linkActive?: {
         borderBottom?: string;
         color?: string;
         borderBottomWidth?: string;
         borderBottomColor?: string;
-        my?: number;
         display?: string;
         textTransform?: string;
         fontSize?: string;
@@ -198,11 +315,14 @@ declare module "@mui/material/styles" {
         fontWeight?: number;
         letterSpacing?: number;
         margin?: string;
-        borderRadius?: string;
+        padding?: string;
+        "&:hover": {
+          backgroundColor?: string;
+      }
+      borderRadius?: string;
       };
-      link: {
+      link?: {
         color?: string;
-        my?: number;
         display?: string;
         textTransform?: string;
         fontSize?: string;
@@ -210,9 +330,25 @@ declare module "@mui/material/styles" {
         fontWeight?: number;
         letterSpacing?: number;
         margin?: string;
-        borderRadius?: string;
+        padding?: string;
+        "&:hover": {
+          backgroundColor?: string;
+      },
+      borderRadius?: string;
       };
-      logoType: {
+      linkReference?:{
+        color?: string;
+      },
+      logoType?: {
+        fontSize?: string;
+        mr?: number;
+        fontWeight?: number;
+        letterSpacing?: string;
+        lineHeight?: number;
+        textDecoration?: string;
+        color?: string;
+      };
+      logoTypeLogin?: {
         fontSize?: string;
         mr?: number;
         fontWeight?: number;
@@ -231,27 +367,32 @@ declare module "@mui/material/styles" {
         textOverflow?: string;
       };
       cardContainer?: {
+        display?: string,
+        flexDirection?: string,
+        justifyContent?: string,
         backgroundColor?: string;
-        maxWidth?: number;
+        maxWidth?: string;
+        height?: string;
         borderWidth?: number; 
-        maxHeight?: number;
       };
       cardButtonContainer?: {
         backgroundColor?: string;
         maxWidth?: number;
         borderWidth?: number; 
-        maxHeight?: number;
+        height?: string;
         "&:hover": {
           transform?: string;
       }
       };
       cardContent?:{
-        paddingBottom?: number;
-        height?: number;
+        paddingBottom?: string;
+        height?: string;
       };
       cardButtonContent?:{
-        paddingBottom?: number; 
-        paddingTop?: number;
+        display?: string; 
+        flexDirection?: string; 
+        alignItems?: string;
+        height?: string;
       };
       cardMedia?: {
         height?: number;
@@ -260,6 +401,53 @@ declare module "@mui/material/styles" {
       cardTitle?: {
         wordWrap?: string;
         color?: string;
+        display?: string;
+        WebkitLineClamp?: number;
+        WebkitBoxOrient?: string;
+        overflow?: string;
+        textOverflow?: string;
+      };
+      cardLoginBox?: {
+        width?: {
+          xs: string,
+          sm: string,
+          md: string,
+          lg: string,
+          xl: string
+        },
+        height?: string,
+        boxShadow?: string,
+        padding?: string,
+      };
+      containerLogin?:{
+        height?: string,
+        display?: string,
+        justifyContent?: string,
+        marginTop?: string,
+      };
+      boxLogoType?:{
+        display?: string, 
+        gap?: string, 
+        alignItems?: string,
+      };
+      h1Login?:{
+        fontSize?:{
+          xs?: string,
+          sm?: string,
+          md?: string,
+          lg?: string,
+          xl?: string,
+        }
+      };
+      body1Login?:{
+        fontSize?: {
+          xs?: string,
+          sm?: string,
+          md?: string,
+          lg?: string,
+          xl?: string,
+        },
+        marginBottom: string,
       };
       title?: {
         textAlign?: string,
@@ -272,10 +460,57 @@ declare module "@mui/material/styles" {
         marginTop?: number;
       };
       centralizeContent?: {
-        display?: string,
-        justifyContent?: string,
-        alignItems?: string
+        display?: string;
+        justifyContent?: string;
+        alignItems?: string;
+        maxWidth?: string;
+        margin?: string;
       }
+      cardVideo?: {
+        display?: string;
+        flexDirection?: string;
+        justifyContent?: string;
+        padding?: number;
+        boxShadow?: string;
+        maxWidth?: string;
+        height?: string;
+        boxSizing?: string;
+        borderRadius?: string;
+      };
+      cardVideoLink?:{
+        display?: string, 
+        flexDirection?: string, 
+        justifyContent?: string 
+      };
+      cardVideoNumber?:{
+        display?: string, 
+        flexDirection?: string, 
+        justifyContent?: string, 
+        marginTop?: number
+        };
+        cardVideoSelect?:{
+          display?: string, 
+          flexDirection?: string, 
+          justifyContent?: string, 
+          marginTop?: number
+          };
+          cardVideoDescription?: {
+            display?: string, 
+            flexDirection?: string, 
+            justifyContent?: string, 
+            marginTop?: number, 
+            marginRight?: number
+          };
+          advanceExercises?: {
+            color?: string,
+            padding?: string,
+          };
+          cardMediaImage: {
+            maxWidth?: string,
+            height?: string,
+            display?: string,
+            objectFit?: string,
+          };
       };
     }
   }
@@ -294,12 +529,12 @@ const theme = createTheme({
       padding: "8px 16px",
       borderRadius: 2,
       border: 1,
+
     },
     description:{
       display: "flex",
-      flexDirection: "row",
       justifyContent: "space-between",
-      padding: 2,
+      padding: "0px 16px 16px 16px",
       boxShadow: "0em 0em 0.4em rgb(44 44 44 / 40% );",
       borderRadius: "6px",
       margin: 0,
@@ -309,7 +544,6 @@ const theme = createTheme({
       color: themePalette.title,
       borderBottomWidth: "3px",
       borderBottomColor: themePalette.title,
-      my: 2,
       display: "block",
       textTransform: "none",
       fontSize: "18px",
@@ -317,26 +551,44 @@ const theme = createTheme({
       fontWeight: 400,
       letterSpacing: 0.4,
       margin: "0 0.5rem",
-      borderRadius: "0",
+      padding: "8px",
+      "&:hover": {
+        backgroundColor: "rgb(246, 250, 253)",
+    },
+      borderRadius: "0"
     },
     link: {
       color: themePalette.descriptionCard,
-      my: 2,
       display: "block",
       textTransform: "none",
       fontSize: "18px",
       lineHeight: 1.7,
       fontWeight: 400,
       letterSpacing: 0.4,
-      margin: "0 0.5rem",
+      margin: "0 0.8rem",
+      padding: "8px", 
+      "&:hover": {
+        backgroundColor: "rgb(246, 250, 253)",
+    },
       borderRadius: "0",
     },
+    linkReference:{
+      color: themePalette.descriptionCard
+    },
     logoType: {
-      fontSize: "19.2px",
+      fontSize: "1.2rem",
       mr: 2,
       fontWeight: 700,
       letterSpacing: "0.15px",
       lineHeight: 1.6,
+      textDecoration: "none",
+      color: themePalette.title,
+    },
+    logoTypeLogin: {
+      fontSize: "2.125rem",
+      fontWeight: 700,
+      letterSpacing: "0.25px",
+      lineHeight: 1.2,
       textDecoration: "none",
       color: themePalette.title,
     },
@@ -350,32 +602,40 @@ const theme = createTheme({
       textOverflow: 'ellipsis',
     },
     cardContainer: {
-      maxHeight: 502,
-      maxWidth: 368,
-      borderWidth: 2,
-      backgroundColor:themePalette.whiteBg
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      backgroundColor:themePalette.whiteBg,
+      maxWidth: "100%",
+      height: "100%",
+      borderWidth: 2
     },
     cardButtonContainer: {
       backgroundColor: themePalette.whiteBg,
       maxWidth: 316, 
       borderWidth: 2, 
-      maxHeight: 256, 
+      height: "100%", 
       "&:hover": {
        transform: "scale(1.1)"
       }
     },
     cardContent:{
-      paddingBottom: 10.63,
-      height: 200
+      paddingBottom: '25%',
+      height: '250px'
     },
+
     cardButtonContent:{
-      paddingBottom: 1, 
-      paddingTop: 2
+      display: "flex", 
+      flexDirection: "column", 
+      alignItems: "flex-start",
+      height: "100%"
     }, 
     centralizeContent: {
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      maxWidth: '1630px',
+      margin: '0 auto'
     },
     cardMedia: {
       height: 152,
@@ -383,7 +643,54 @@ const theme = createTheme({
     },
     cardTitle:{
       color: themePalette.title,
-      wordWrap: "break-word"
+      wordWrap: "break-word",
+      display: '-webkit-box',
+      WebkitLineClamp: 3,
+      WebkitBoxOrient: 'vertical', 
+      overflow: 'hidden',
+      textOverflow: 'ellipsis'
+    },
+    cardLoginBox: {
+      width: {
+        xs: "90%",
+        sm: "60%",
+        md: "45%",
+        lg: "35%",
+        xl: "30%",
+      },
+      height: "30%",
+      boxShadow: "0 0 0.4em rgba(44, 44, 44, 0.4)",
+      padding: "40px",
+    },
+    containerLogin:{
+      height: "100%",
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "80px",
+    },
+    boxLogoType:{
+      display: "flex", 
+      gap: "20px", 
+      alignItems: "center",
+    },
+    h1Login:{
+      fontSize:{
+        xs: "32px",
+        sm: "40px",
+        md: "40px",
+        lg: "44px",
+        xl: "48px",
+      },
+    },
+    body1Login:{
+      fontSize: {
+        xs: "18px",
+        sm: "20px",
+        md: "24px",
+        lg: "24px",
+        xl: "24px",
+      },
+      marginBottom: "15px",
     },
     title: {
       textAlign: "left",
@@ -393,8 +700,53 @@ const theme = createTheme({
     breadCrumb: {
       textDecoration: "none",
       color: themePalette.title,
-      // marginTop: 11.75,
+      marginTop: 1.2,
     },
+    cardVideo:{
+      display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        padding: 2,
+        boxShadow: "0em 0em 0.4em rgb(44 44 44 / 40%)",
+        maxWidth: "100%",
+        height: "100%",
+        boxSizing: "border-box",
+        borderRadius: "6px",
+    },
+    cardVideoLink:{
+      display: "flex", 
+      flexDirection: "column", 
+      justifyContent: "center" 
+    },
+    cardVideoNumber:{
+    display: "flex", 
+    flexDirection: "column", 
+    justifyContent: "center", 
+    marginTop: 4 
+    },
+    cardVideoSelect:{
+      display: "flex", 
+      flexDirection: "column", 
+      justifyContent: "center", 
+      marginTop: 7 
+    },
+    cardVideoDescription: {
+      display: "flex", 
+      flexDirection: "column", 
+      justifyContent: "center", 
+      marginTop: 5, 
+      marginRight: 1.3
+    },
+    advanceExercises: {
+      color: themePalette.button,
+      padding: "10px 20px",
+    },
+    cardMediaImage: {
+      maxWidth: '100%',
+      height: 'auto',
+      display: 'block',
+      objectFit: 'cover',
+    }
   },
   palette: {
     statusSelect: {
@@ -404,9 +756,9 @@ const theme = createTheme({
     },
     buttonHover: {
       main: themePalette.button,
+      light: themePalette.hoverBg,
       contrastText: themePalette.whiteBg,
     },
-
     textColor: {
       main: themePalette.title,
       light: themePalette.descriptionCard,
@@ -419,26 +771,73 @@ const theme = createTheme({
   },
   typography: {
     h1: {
-      fontSize: "48px",
-      lineHeight: 1.16,
       fontWeight: 500,
       letterSpacing: 0.15,
+      lineHeight: "normal",
+      [`@media (min-width:0px)`]: {
+        fontSize: "1.5rem",
+      },
+      [`@media (min-width:600px)`]: {
+        fontSize: "2rem",
+      },
+      [`@media (min-width:900px)`]: {
+        fontSize: "2.5rem",
+      },
+      [`@media (min-width:1200px)`]: {
+        fontSize: "3rem",
+      },
+      [`@media (min-width:1536px)`]: {
+        fontSize: "3.5rem",
+      }
     },
-
     h2: {
-      fontSize: "25.6px",
       lineHeight: 1.6,
       fontWeight: 500,
       letterSpacing: 0.15,
+      [`@media (min-width:0px)`]: {
+        fontSize: "1.5rem",
+      },
+      [`@media (min-width:600px)`]: {
+        fontSize: "1.8rem",
+      },
+      [`@media (min-width:900px)`]: {
+        fontSize: "2.2rem",
+      },
+      [`@media (min-width:1200px)`]: {
+        fontSize: "2.4rem",
+      },
+      [`@media (min-width:1536px)`]: {
+        fontSize: "2.4rem",
+      }
+    },
+    h3: {
+      lineHeight: 1.6,
+      fontWeight: 500,
+      letterSpacing: 0.15,
+      [`@media (min-width:0px)`]: {
+        fontSize: "1.2rem",
+      },
+      [`@media (min-width:600px)`]: {
+        fontSize: "1.4rem",
+      },
+      [`@media (min-width:900px)`]: {
+        fontSize: "1.5rem",
+      },
+      [`@media (min-width:1200px)`]: {
+        fontSize: "1.6rem",
+      },
+      [`@media (min-width:1536px)`]: {
+        fontSize: "1.6rem",
+      }
     },
     body1: {
-      fontSize: "16px",
+      fontSize: "1rem",
       lineHeight: 1.5,
       fontWeight: 400,
-      letterSpacing: 0.15,
+      letterSpacing: 0.15,  
     },
     caption: {
-      fontSize: "22px",
+      fontSize: "1.4rem",
       lineHeight: 1.6,
       fontWeight: 500,
       letterSpacing: 0.15,

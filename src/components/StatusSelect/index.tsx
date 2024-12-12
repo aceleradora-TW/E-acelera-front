@@ -3,45 +3,67 @@ import Box from "@mui/material/Box"
 import InputLabel from "@mui/material/InputLabel"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
-import Select from '@mui/material/Select'
-import { SelectChangeEvent } from '@mui/material/Select'
+import Select from "@mui/material/Select"
+import { SelectChangeEvent } from "@mui/material/Select"
 import { theme } from "@/app/config/theme"
+import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
 
 interface StatusSelectProps {
-  width?: "30%" | "70%"
-} 
+  width?: "30%" | "70%" | "100%"
+}
 
-export default function StatusSelect({width = "30%"}: StatusSelectProps) {
-  const [status, setStatus] = React.useState<string>("")
-  const [backgroundColor, setBackgroundColor] = React.useState<any>("")
+export default function StatusSelect({ width = "30%" }: StatusSelectProps) {
+  const [status, setStatus] = React.useState<string>("statusPending")
+  const [backgroundColor, setBackgroundColor] = React.useState<string>("rgb(225, 225, 225)")
+  const router = useRouter()
+  const { data: session } = useSession()
 
   const handleChange = (event: SelectChangeEvent) => {
     const value = event.target.value as string
     setStatus(value)
 
-    switch (value) {
-      case "statusConcluded":
-        setBackgroundColor(theme.palette.statusSelect?.light)
-        break
-      case "statusInProgress":
-        setBackgroundColor(theme.palette.statusSelect?.dark)
-        break
-      case "statusPending":
-        setBackgroundColor(theme.palette.statusSelect?.main)
-        break
-      default:
-        setBackgroundColor("")
-
+    
+    if (!session) {
+      const currentUrl = encodeURIComponent(window.location.href)
+      router.push(`/login?callbackUrl=${currentUrl}`)
     }
   }
-  
+
+ 
+  React.useEffect(() => {
+    switch (status) {
+      case "statusConcluded":
+        setBackgroundColor(theme.palette.statusSelect?.light || "")
+        break
+      case "statusInProgress":
+        setBackgroundColor(theme.palette.statusSelect?.dark || "")
+        break
+      case "statusPending":
+        setBackgroundColor(theme.palette.statusSelect?.main || "")
+        break
+      default:
+        setBackgroundColor("rgb(225, 225, 225)")
+    }
+  }, [status])
+
   return (
-    <Box sx={{ backgroundColor, width}}>
+    <Box sx={{ backgroundColor, width }}>
       <FormControl fullWidth>
-        <InputLabel id="statusLeveling" sx={{ color: "black" }}>
+        <InputLabel
+          shrink={true}
+          id="statusLeveling"
+          sx={{
+            color: "#000000",
+            "&.Mui-focused": {
+              color: "#000000",
+            },
+          }}
+        >
           Status
         </InputLabel>
         <Select
+          notched={true}
           labelId="statusLeveling"
           id="statusSelect"
           value={status}
@@ -49,17 +71,17 @@ export default function StatusSelect({width = "30%"}: StatusSelectProps) {
           onChange={handleChange}
           sx={{
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "black"
+              borderColor: "#000000",
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: "black"
+              border: "1px solid #000000",
             },
-            color: "#000000"
+            height: "40px",
           }}
         >
           <MenuItem value="statusConcluded">Concluído</MenuItem>
-          <MenuItem value="statusInProgress">Em andamento</MenuItem>
-          <MenuItem value="statusPending">Pendente</MenuItem>
+          <MenuItem value="statusInProgress">Em Andamento</MenuItem>
+          <MenuItem value="statusPending">Não Iniciado</MenuItem>
         </Select>
       </FormControl>
     </Box>

@@ -5,7 +5,7 @@ export interface DataItem {
     id: string;
     field: CommonField | ThemeField | TopicField | VideoField | ExercisesField;
 }
-interface CommonField {
+export interface CommonField {
     rowId: string;
     sequence: number;
     isConfigure: number;
@@ -23,19 +23,26 @@ interface CommonField {
 }
 
 export interface ThemeField extends CommonField {
+    topicsInfo: string;
     cardDescription: string;
     image: Image[] | null;
     topics: string;
     category: string;
-    topicDescription: string;
+    topicsDescription: string;
+    alt: string;
 }
 
 export interface TopicField extends CommonField {
     cardDescription: string;
     video: string;
-    references: string | null;
+    references: string;
     theme: string;
     exercises: string;
+    exercisesDescription: string;
+    exercisesInfo: string;
+    videoDescription: string;
+    videoLink: string;
+    videoReference: string
 };
 
 export interface VideoField extends CommonField {
