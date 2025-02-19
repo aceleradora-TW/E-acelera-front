@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 interface UseExerciseStatusProps {
   topicId: string
@@ -10,7 +10,7 @@ export const useExerciseStatus = ({ topicId, itemId }: UseExerciseStatusProps) =
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const fetchStatus = useCallback(async () => {
-    if (!topicId || !itemId ) return;
+    if (!topicId || !itemId ) return
     setIsLoading(true)
     try {
       const response = await fetch(`/api/backend/getExerciseStatus`, {

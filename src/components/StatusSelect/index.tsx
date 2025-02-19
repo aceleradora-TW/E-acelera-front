@@ -95,7 +95,7 @@ export default function StatusSelect({ width = "30%" }: StatusSelectProps) {
     >
       <FormControl fullWidth>
         <InputLabel
-          shrink={true}
+          shrink
           id="statusLeveling"
           sx={{
             color: "#000000",
@@ -107,7 +107,7 @@ export default function StatusSelect({ width = "30%" }: StatusSelectProps) {
           Status
         </InputLabel>
         <Select
-          notched={true}
+          notched
           labelId="statusLeveling"
           id="statusSelect"
           value={status || "NotStarted"}
